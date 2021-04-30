@@ -39,7 +39,14 @@ CREATE TABLE IF NOT EXISTS `bothniabladet`.`Invoice` (
   `ID_invoice` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
   `payment_term` VARCHAR(255) NULL,
-  PRIMARY KEY (`ID_invoice`))
+  `Member_ID_member` INT NOT NULL,
+  PRIMARY KEY (`ID_invoice`),
+  INDEX `fk_Invoice_Member1_idx` (`Member_ID_member` ASC) VISIBLE,
+  CONSTRAINT `fk_Invoice_Member1`
+    FOREIGN KEY (`Member_ID_member`)
+    REFERENCES `bothniabladet`.`Member` (`ID_member`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
