@@ -10,7 +10,7 @@ include_once '../../models/Member.php';
 $database = new Database();
 $db = $database -> connect();
 
-//Instantiate blog post object
+//Instantiate member object
 $member = new Member($db);
 
 //Member query
