@@ -46,7 +46,7 @@ CREATE TABLE `image` (
 
 LOCK TABLES `image` WRITE;
 /*!40000 ALTER TABLE `image` DISABLE KEYS */;
-INSERT INTO `image` VALUES (4,'../images/iphone_SE.jpg','1080x720',2332,'jpg','-','Lukas Skog','Linköping','2021-03-24 12:23:44','Canon',-1),(5,'../images/samsung_note23.jpg','720x720',555,'jpg','-','Simpan','Norrland','2009-02-21 23:39:59','Nokia 3310',-1),(7,'../images/samsung_Z-flip.jpg','480x480',213,'jpg','-','Chrizze','Göteborg','2020-12-23 15:24:22','okänd',3);
+INSERT INTO `image` VALUES (4,'iphone_SE.jpg','1080x720',2332,'jpg','-','Lukas Skog','Linköping','2021-03-24 12:23:44','Canon',-1),(5,'samsung_note23.jpg','720x720',555,'jpg','-','Simpan','Norrland','2009-02-21 23:39:59','Nokia 3310',-1),(7,'samsung_Z-flip.jpg','480x480',213,'jpg','-','Chrizze','Göteborg','2020-12-23 15:24:22','okänd',3);
 /*!40000 ALTER TABLE `image` ENABLE KEYS */;
 UNLOCK TABLES;
 
