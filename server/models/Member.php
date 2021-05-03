@@ -65,7 +65,7 @@ class Member{
         $this->email = $row['email'];
         $this->discount_amount = $row['discount_amount'];
 
-  return $stmt; 
+        return $stmt; 
     }
 
     //Create member
