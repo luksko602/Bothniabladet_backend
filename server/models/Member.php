@@ -41,8 +41,7 @@ class Member{
         //Create query
         $query = 'SELECT ID_member, password, first_name, last_name, city, postal, street, phone, email, discount_amount FROM ' 
         . $this->table . ' WHERE ID_member = ?';
-                
-        //Prepare statement
+         //Prepare statement
         $stmt = $this->conn->prepare($query);
 
         //Bind ID
