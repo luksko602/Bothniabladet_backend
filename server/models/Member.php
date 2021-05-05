@@ -80,8 +80,7 @@ class Member{
             street= :street,
             phone= :phone,
             email= :email';
-        // INSERT INTO `bothniabladet`.`member` (`password`, `first_name`, `last_name`, `city`, `postal`, `street`, `phone`, `email`) VALUES ('hej', 'Kalle', 'Karlsson', 'Stad', '12312', 'Gatan 1', '013-122312', 'kalle.karlsson@hotmail.com');
-        
+       
         //Prepare statement
         $stmt = $this->conn->prepare($query);
 
