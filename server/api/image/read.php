@@ -26,6 +26,7 @@ if($num > 0){
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
+        if ($limited_usage == 0 OR $published == 0) { continue;};
         $image_item = array(
             'ID_image' => $ID_image,
             'imageURL' => 'http://localhost/bothniabladet/Bothniabladet_backend/server/images'.$imageURL,
@@ -36,7 +37,10 @@ if($num > 0){
             'photographer' => $photographer,
             'location' => $location,
             'date' => $date,
-            'camera' => $camera
+            'camera' => $camera,
+            'limited_usage' => $limited_usage,
+            'published' => $published
+
         );
         
         //Push to "data"

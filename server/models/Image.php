@@ -16,6 +16,8 @@ class Image{
        public $location;
        public $date;
        public $camera;
+       public $published;
+       public $limited_usage;
    
        // Constructor with DB
        public function __construct($db) {
@@ -26,7 +28,7 @@ class Image{
     public function read(){
 
         //Create query   
-        $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera FROM ' . $this->table;
+        $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera, limited_usage, published  FROM ' . $this->table;
         
         //Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -40,10 +42,8 @@ class Image{
     //Get single image
     public function read_single(){
         //Create query
-      //  $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera FROM ' 
-       // . $this->table. 'WHERE ID_image = ?';
          
-        $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera FROM '.
+        $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera, limited_usage, published FROM '.
         $this->table .' WHERE ID_image = ?';
       
         //Prepare statement
@@ -68,6 +68,8 @@ class Image{
         $this->location = $row['location'];
         $this->date = $row['date'];
         $this->camera = $row['camera'];
+        $this->limited_usage =$row['limited_usage'];
+        $this->published = $row['published'];
 
         return $stmt; 
     }
@@ -113,8 +115,6 @@ class Image{
         
         //Execute query
         if($stmt->execute()){
-            echo($this->imageURL);
-            var_dump($stmt);
             return true;
         }else{
         //Print error if somethings wrong
