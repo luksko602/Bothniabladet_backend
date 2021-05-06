@@ -28,7 +28,7 @@ if($num > 0){
         extract($row);
         $image_item = array(
             'ID_image' => $ID_image,
-            'imageURL' => 'http://localhost/bothniabladet/Bothniabladet_backend/server/images/'.$imageURL,
+            'imageURL' => 'http://localhost/bothniabladet/Bothniabladet_backend/server/images'.$imageURL,
             'resolution' => $resolution,
             'file_size' => $file_size,
             'file_type' => $file_type,

@@ -28,7 +28,6 @@ class Image{
         //Create query   
         $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera FROM ' . $this->table;
         
-        
         //Prepare statement
         $stmt = $this->conn->prepare($query);
 
@@ -36,7 +35,6 @@ class Image{
         $stmt->execute();
 
         return $stmt;
-
         }
 
     //Get single image
@@ -115,6 +113,8 @@ class Image{
         
         //Execute query
         if($stmt->execute()){
+            echo($this->imageURL);
+            var_dump($stmt);
             return true;
         }else{
         //Print error if somethings wrong
