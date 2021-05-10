@@ -17,18 +17,6 @@ $db = $database -> connect();
 $member = new Member($db);
 
 //Get the raw posted data
-//$data = json_decode(file_get_contents("php://input"));
-
-// $member->password = $data->password;
-// $member->first_name = $data->first_name;
-// $member->last_name = $data->last_name;
-// $member->city = $data->city;
-// $member->postal = $data->postal;
-// $member->street = $data->street;
-// $member->phone = $data->phone;
-// $member->email = $data->email;
-// $meber->member_type = $data->member_type;
-
 $member->password = $_POST['password'];
 $member->first_name = $_POST['first_name'];
 $member->last_name = $_POST['last_name'];
