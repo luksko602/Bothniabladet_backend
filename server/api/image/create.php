@@ -41,7 +41,9 @@ if(!empty($_FILES['image']))
      $image->location = $_POST['location'];
      $image->date = date('Y-m-d H:i:s');
      $image->camera = $_POST['camera'];
-
+     $image->limited_usage = $_POST['limited_usage'];
+     $image->published = $_POST['published'];
+    
 //Create the post
 if($image->create()){
 echo json_encode(

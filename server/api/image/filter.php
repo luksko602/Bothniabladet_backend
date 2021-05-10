@@ -38,7 +38,9 @@ if($num > 0){
             'photographer' => $photographer,
             'location' => $location,
             'date' => $date,
-            'camera' => $camera
+            'camera' => $camera,
+            'limited_usage' => $limited_usage,
+            'published' => $published
         );
         
         //Push to "data"

@@ -31,6 +31,7 @@ $member_arr = array(
     'phone' => $member->phone,
     'email' => $member->email,
     'discount_amount' => $member->discount_amount,
+    'member_type' => $member->member_type
 );
 
 //Make JSON

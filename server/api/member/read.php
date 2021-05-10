@@ -36,7 +36,8 @@ if($num > 0){
             'street' => $street,
             'phone' => $phone,
             'email' => $email,
-            'discount_amount' => $discount_amount
+            'discount_amount' => $discount_amount,
+            'member_type' => $member_type
         );
         
         //Push to "data"

@@ -86,7 +86,9 @@ class Image{
             photographer= :photographer,
             location= :location,
             date= :date,
-            camera= :camera';
+            camera= :camera,
+            limited_usage= :limited_usage,
+            published= :published';
 
         //Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -101,6 +103,8 @@ class Image{
         $this->location = htmlspecialchars(strip_tags($this->location));
         $this->date = htmlspecialchars(strip_tags($this->date));
         $this->camera = htmlspecialchars(strip_tags($this->camera));
+        $this->limited_usage = htmlspecialchars(strip_tags($this->limited_usage));
+        $this->published = htmlspecialchars(strip_tags($this->published));
   
         //Bind data
         $stmt->bindParam(':imageURL',  $this->imageURL);
@@ -112,7 +116,9 @@ class Image{
         $stmt->bindParam(':location', $this->location);
         $stmt->bindParam(':date', $this->date);
         $stmt->bindParam(':camera', $this->camera);
-        
+        $stmt->bindParam(':limited_usage', $this->limited_usage);
+        $stmt->bindParam(':published', $this->published);
+
         //Execute query
         if($stmt->execute()){
             return true;
@@ -129,13 +135,12 @@ class Image{
         if(empty($keys)){
             die();
         }
-        $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera FROM ' . $this->table;
-        $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera FROM '. $this->table .
+        $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera, limited_usage, published FROM '. $this->table .
         ' AS i
         INNER JOIN keyword_has_image AS khi  ON khi.Image_ID_image = i.ID_image
         INNER JOIN keyword AS k ON k.ID_keyword = khi.Key_word_ID_key_word
         WHERE k.keyword = "'. $keys['0'].'"';
-        
+
         $keys_size = count($keys);
         if ($keys_size > 1){
             for($x = 1; $x <= $keys_size-1; $x++){
@@ -148,7 +153,6 @@ class Image{
 
         //Execute statement
         $stmt->execute();
-
         return $stmt;
 
         }

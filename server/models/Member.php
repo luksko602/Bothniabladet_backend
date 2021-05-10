@@ -16,6 +16,7 @@ class Member{
     public $phone;
     public $email;
     public $discount_amount;
+    public $member_type;
 
     // Constructor with DB
     public function __construct($db) {
@@ -25,7 +26,7 @@ class Member{
     //Get members
     public function read(){
         //Create query
-        $query = 'SELECT ID_member, password, first_name, last_name, city, postal, street, phone, email, discount_amount FROM ' . $this->table;
+        $query = 'SELECT ID_member, password, first_name, last_name, city, postal, street, phone, email, discount_amount, member_type FROM ' . $this->table;
         
         //Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -39,7 +40,7 @@ class Member{
     //Get single member
     public function read_single(){
         //Create query
-        $query = 'SELECT ID_member, password, first_name, last_name, city, postal, street, phone, email, discount_amount FROM ' 
+        $query = 'SELECT ID_member, password, first_name, last_name, city, postal, street, phone, email, discount_amount, member_type FROM ' 
         . $this->table . ' WHERE ID_member = ?';
          //Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -63,6 +64,7 @@ class Member{
         $this->phone = $row['phone'];
         $this->email = $row['email'];
         $this->discount_amount = $row['discount_amount'];
+        $this->member_type = $row['member_type'];
 
         return $stmt; 
     }
@@ -79,7 +81,9 @@ class Member{
             postal= :postal,
             street= :street,
             phone= :phone,
-            email= :email';
+            email= :email,
+            discount_amount= :discount_amount,
+            member_type= :member_type';
        
         //Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -93,6 +97,8 @@ class Member{
         $this->street = htmlspecialchars(strip_tags($this->street));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
         $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->discount_amount = htmlspecialchars(strip_tags($this->discount_amount));
+        $this->member_type = htmlspecialchars(strip_tags($this->member_type));
 
         //Bind data
         $stmt->bindParam(':password', $this->password);
@@ -103,6 +109,8 @@ class Member{
         $stmt->bindParam(':street', $this->street);
         $stmt->bindParam(':phone', $this->phone);
         $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':member_type', $this->member_type);
+        $stmt->bindParam(':discount_amount', $this->discount_amount);
 
         //Execute query
         if($stmt->execute()){
@@ -112,6 +120,16 @@ class Member{
         printf("Error: %s.\n", $stmt->error);
         return false;
         }
-
+    }
+    function login(){
+        //Create query
+        $query = "SELECT email, password from ". $this->table ." where email = '" . $this->email . "' AND password = '" . $this->password . "'";
+  
+        //Prepare statement
+        $stmt = $this->conn->prepare($query);
+        //Execute query
+        $stmt->execute();
+        //Return result
+        return $stmt;
     }
 }
