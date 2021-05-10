@@ -118,7 +118,7 @@ class Image{
         $stmt->bindParam(':camera', $this->camera);
         $stmt->bindParam(':limited_usage', $this->limited_usage);
         $stmt->bindParam(':published', $this->published);
-
+        
         //Execute query
         if($stmt->execute()){
             return true;
