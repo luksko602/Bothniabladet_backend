@@ -25,7 +25,8 @@ if($stmt->rowCount() > 0){
     $login_arr = array(
         "status" => true,
         "message" => "Successful login!",
-        "email" => $row['email']
+        "email" => $row['email'],
+        "member_type" => $row['member_type']
     );
 }else{
     $login_arr = array(
