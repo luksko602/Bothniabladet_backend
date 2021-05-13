@@ -123,7 +123,7 @@ class Member{
     }
     function login(){
         //Create query
-        $query = "SELECT email, password, member_type from ". $this->table ." where email = '" . $this->email . "' AND password = '" . $this->password . "'";
+        $query = "SELECT email, password, member_type, ID_member from ". $this->table ." where email = '" . $this->email . "' AND password = '" . $this->password . "'";
   
         //Prepare statement
         $stmt = $this->conn->prepare($query);
