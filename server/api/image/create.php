@@ -100,6 +100,7 @@ if(!empty($_FILES['image']))
    if (isset($_POST['published'])){
     $image->published = $_POST['published'];
    }
+   
 //Create the post
 if($image->create()){
 echo json_encode(

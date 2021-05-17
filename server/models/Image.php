@@ -156,6 +156,79 @@ class Image{
         return $stmt;
 
         }
+
+        public function delete(){
+            //Prepare statement
+            $query = 'DELETE FROM '.$this->table.' WHERE ID_image = :id';
+            $stmt = $this->conn->prepare($query);
+
+            //Clean and bind value
+            $this->ID_image = htmlspecialchars(strip_tags($this->ID_image));
+            $stmt->bindValue(':id', $this->ID_image);
+            
+            //Execute
+            if($stmt->execute()){
+                return true;
+            }else{
+            //Print error if somethings wrong
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+            }
+        }
+
+        public function update(){
+        $query = 'UPDATE '.$this->table.' SET 
+            resolution= :resolution,
+            file_size= :file_size,
+            file_type= :file_type, 
+            GPS_coordinates= :GPS_coordinates,
+            photographer= :photographer,
+            location= :location,
+            date= :date,
+            camera= :camera,
+            limited_usage= :limited_usage,
+            published= :published 
+            WHERE (ID_image = :ID_image)';
+
+
+        //Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        //Clean data
+        $this->resolution = htmlspecialchars(strip_tags($this->resolution));
+        $this->file_size = htmlspecialchars(strip_tags($this->file_size));
+        $this->file_type = htmlspecialchars(strip_tags($this->file_type));
+        $this->GPS_coordinates = htmlspecialchars(strip_tags($this->GPS_coordinates));
+        $this->photographer = htmlspecialchars(strip_tags($this->photographer));
+        $this->location = htmlspecialchars(strip_tags($this->location));
+        $this->date = htmlspecialchars(strip_tags($this->date));
+        $this->camera = htmlspecialchars(strip_tags($this->camera));
+        $this->limited_usage = htmlspecialchars(strip_tags($this->limited_usage));
+        $this->published = htmlspecialchars(strip_tags($this->published));
+        $this->ID_image = htmlspecialchars(strip_tags($this->ID_image));
+  
+        //Bind data
+        $stmt->bindParam(':resolution', $this->resolution);
+        $stmt->bindParam(':file_size', $this->file_size);
+        $stmt->bindParam(':file_type', $this->file_type);
+        $stmt->bindParam(':GPS_coordinates', $this->GPS_coordinates);
+        $stmt->bindParam(':photographer', $this->photographer);
+        $stmt->bindParam(':location', $this->location);
+        $stmt->bindParam(':date', $this->date);
+        $stmt->bindParam(':camera', $this->camera);
+        $stmt->bindParam(':limited_usage', $this->limited_usage);
+        $stmt->bindParam(':published', $this->published);
+        $stmt->bindParam(':ID_image', $this->ID_image);
+        
+        //Execute query
+        if($stmt->execute()){
+            return true;
+        }else{
+        //Print error if somethings wrong
+        printf("Error: %s.\n", $stmt->error);
+        return false;
+        }
+        }
         
         
 }
