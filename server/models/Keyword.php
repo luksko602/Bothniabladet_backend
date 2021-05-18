@@ -107,4 +107,19 @@ class Keyword{
             return false;
         }
     }
+    public function read_by_id_image($ID_image){
+        $query = 'SELECT keyword FROM keyword_has_image as khi 
+        JOIN keyword as k ON khi.Key_word_ID_key_word = k.ID_keyword 
+        WHERE khi.Image_ID_image = :id';
+
+         //Prepare statement
+         $stmt = $this->conn->prepare($query);
+
+        $ID_image = htmlspecialchars(strip_tags($ID_image));
+        $stmt->bindValue(':id', $ID_image);
+
+        //Execute and return statement
+        $stmt->execute();
+         return $stmt;
+ }
 }
