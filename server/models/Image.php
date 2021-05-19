@@ -157,9 +157,39 @@ class Image{
 
         }
 
+
+
         public function delete(){
+            if($this->deleteKeywords()){
+
+            
             //Prepare statement
             $query = 'DELETE FROM '.$this->table.' WHERE ID_image = :id';
+            $stmt = $this->conn->prepare($query);
+
+            //Clean and bind value
+            $this->ID_image = htmlspecialchars(strip_tags($this->ID_image));
+            $stmt->bindValue(':id', $this->ID_image);
+        
+            //Execute
+            if($stmt->execute()){
+                return true;
+            }else{
+            //Print error if somethings wrong
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+            }
+        }
+        else{
+            //Print error if somethings wrong
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+            }
+        }
+
+        public function deleteKeywords(){
+            //Prepare statement
+            $query = 'DELETE FROM keyword_has_image WHERE Image_ID_image = :id';
             $stmt = $this->conn->prepare($query);
 
             //Clean and bind value
@@ -175,6 +205,7 @@ class Image{
             return false;
             }
         }
+
 
         public function update(){
         $query = 'UPDATE '.$this->table.' SET 
