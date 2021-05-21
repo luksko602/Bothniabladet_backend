@@ -34,12 +34,8 @@ $image->ID_image = isset($_GET['id']) ? $_GET['id'] : die();
 
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             extract($row);
-            $key_item = array(
-                'keyword' => $keyword
-            );
-            
             //Push to "data"
-            array_push($key_arr['keywords'], $key_item);
+            array_push($key_arr['keywords'], $keyword);
         }
 
         //Turn to JSON & output
