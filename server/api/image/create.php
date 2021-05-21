@@ -101,8 +101,10 @@ if(!empty($_FILES['image']))
     $image->published = $_POST['published'];
    }
    
+   http_response_code(400);
 //Create the post
 if($image->create()){
+    http_response_code(200);
 echo json_encode(
     array('message' => 'Post Created')
 );
