@@ -1,5 +1,9 @@
 <?php
-//Header
+
+//author: Lukas Skog Andersen
+//A api to get all keywords related to a specific image.
+
+//Headers
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
@@ -11,37 +15,37 @@ include_once '../../models/Keyword.php';
 $database = new Database();
 $db = $database -> connect();
 
-//Instantiate image object
+//Instantiate Image and Keyword object
 $image = new Image($db);
 $keyword = new Keyword($db);
 
-//Get ID
+//Get ID, if id is missing the function dies.
 $image->ID_image = isset($_GET['id']) ? $_GET['id'] : die();
 
-    //Get single image
+    //Get the single image. Makes sure the picture is in the database.
     $image->read_single();
 
-    //Member query
+    //Get keywords related to the image. image ID is passed as argument.
     $result = $keyword->read_by_id_image($image->ID_image);
+    
     //Get row count
     $num = $result->rowCount();
-
     //Check if any posts
     if($num > 0){
-        //Member array
+        //Keyword array
         $key_arr = array();
         $key_arr['keywords'] = array ();
 
+        //Adds all keywords found
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             extract($row);
             //Push to "data"
             array_push($key_arr['keywords'], $keyword);
         }
-
-        //Turn to JSON & output
+        //Echo result as json
         echo json_encode($key_arr);
 }else{
-    //No members
+    //If no keywords found
     echo json_encode(
         array('message' => 'No keywords found')
     );

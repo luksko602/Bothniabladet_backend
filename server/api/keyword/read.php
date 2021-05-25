@@ -1,5 +1,9 @@
 <?php
-//Header
+
+//author: Lukas Skog Andersen
+//A api to read all keywords in the database
+
+//Headers
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
@@ -10,35 +14,35 @@ include_once '../../models/Keyword.php';
 $database = new Database();
 $db = $database -> connect();
 
-//Instantiate member object
+//Instantiate keyword object
 $keyword = new Keyword($db);
 
-//Member query
+//Keyword query
 $result = $keyword->read();
 //Get row count
 $num = $result->rowCount();
 
 //Check if any posts
 if($num > 0){
-    //Member array
+    //Keyword array
     $key_arr = array();
     $key_arr['keywords'] = array ();
 
+    //Add all keywords to the array
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $key_item = array(
             'ID_keyword' => $ID_keyword,
             'keyword' => $keyword
-        );
-        
+        );    
         //Push to "data"
         array_push($key_arr['keywords'], $key_item);
     }
 
-    //Turn to JSON & output
+    //Echo result as json
     echo json_encode($key_arr);
 }else{
-    //No members
+    //If no keywords
     echo json_encode(
         array('message' => 'No keywords found')
     );

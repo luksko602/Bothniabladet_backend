@@ -1,5 +1,9 @@
 <?php
-//Header
+
+//author: Lukas Skog Andersen
+//A api to read all members in the database
+
+//Headers
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
@@ -24,6 +28,7 @@ if($num > 0){
     $members_arr = array();
     $members_arr['data'] = array ();
 
+    //add all members
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         $member_item = array(
@@ -39,15 +44,15 @@ if($num > 0){
             'discount_amount' => $discount_amount,
             'member_type' => $member_type
         );
-        
+
         //Push to "data"
         array_push($members_arr['data'], $member_item);
     }
 
-    //Turn to JSON & output
+    //Echo result as json
     echo json_encode($members_arr);
 }else{
-    //No members
+    //If no members
     echo json_encode(
         array('message' => 'No members found')
     );

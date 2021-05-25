@@ -1,11 +1,14 @@
 <?php
 
+//author: Lukas Skog Andersen
+//A data access object of a Member in the database
+
 class Member{
-    //DB stuff
+    //DB connection and table
     private $conn;
     private $table = 'member';
 
-    //Post Properties
+    //Member Properties
     public $ID_member;
     public $password;
     public $first_name;
@@ -23,7 +26,7 @@ class Member{
         $this->conn = $db;
     }
 
-    //Get members
+    //Get information about all  members in the database
     public function read(){
         //Create query
         $query = 'SELECT ID_member, password, first_name, last_name, city, postal, street, phone, email, discount_amount, member_type FROM ' . $this->table;
@@ -34,15 +37,17 @@ class Member{
         //Execute statement
         $stmt->execute();
 
+        //Return statement
         return $stmt;
     }
 
-    //Get single member
+    //Get a single member from the database based on its ID
     public function read_single(){
         //Create query
         $query = 'SELECT ID_member, password, first_name, last_name, city, postal, street, phone, email, discount_amount, member_type FROM ' 
         . $this->table . ' WHERE ID_member = ?';
-         //Prepare statement
+
+        //Prepare statement
         $stmt = $this->conn->prepare($query);
 
         //Bind ID
@@ -51,9 +56,10 @@ class Member{
         //Execute statement
         $stmt->execute();
 
+        //Handle result
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //Set properties
+        //Set properties in this object
         $this->ID_member = $row['ID_member'];
         $this->password = $row['password'];
         $this->first_name = $row['first_name'];
@@ -66,10 +72,11 @@ class Member{
         $this->discount_amount = $row['discount_amount'];
         $this->member_type = $row['member_type'];
 
+        //Return statement
         return $stmt; 
     }
 
-    //Create member
+    //Create a member based on post data.
     public function create(){
         //Create query
         $query = 'INSERT INTO ' . $this->table . '
@@ -100,7 +107,7 @@ class Member{
         $this->discount_amount = htmlspecialchars(strip_tags($this->discount_amount));
         $this->member_type = htmlspecialchars(strip_tags($this->member_type));
 
-        //Bind data
+        //Bind data, done to prevent SQL-injections
         $stmt->bindParam(':password', $this->password);
         $stmt->bindParam(':first_name', $this->first_name);
         $stmt->bindParam(':last_name', $this->last_name);
@@ -114,6 +121,7 @@ class Member{
 
         //Execute query
         if($stmt->execute()){
+            //Return true if everything went okay.
             return true;
         }else{
         //Print error if somethings wrong
@@ -121,6 +129,8 @@ class Member{
         return false;
         }
     }
+
+    //Function which simulates a login. Returns true if login successful, otherwise false
     function login(){
         //Create query
         $query = "SELECT email, password, member_type, ID_member from ". $this->table ." where email = '" . $this->email . "' AND password = '" . $this->password . "'";

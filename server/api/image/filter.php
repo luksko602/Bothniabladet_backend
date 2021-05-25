@@ -1,5 +1,9 @@
 <?php
-//Header
+
+//author: Lukas Skog Andersen
+//A api to search for images with an array or single key.
+
+//Headers
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
@@ -16,7 +20,9 @@ $image = new Image($db);
 //Image query
 $keys = $_GET["keys"];
 
+//Search for images with keys
 $result = $image->filter($keys);
+
 //Get row count
 $num = $result->rowCount();
 
@@ -26,8 +32,20 @@ if($num > 0){
     $image_arr = array();
     $image_arr['images'] = array ();
 
+    //Loop the images found
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
+
+        if ($limited_usage == 0 ){
+            //If the picutre has run out of usages skip iteration
+            continue;
+        }
+        if($published == 0){
+            //If the picture is not published skip iteration
+            continue;   
+        }
+
+        //if no errors, add the image to the array
         $image_item = array(
             'ID_image' => $ID_image,
             'imageURL' => 'http://localhost/bothniabladet/Bothniabladet_backend/server/images/'.$imageURL,
@@ -42,7 +60,7 @@ if($num > 0){
             'limited_usage' => $limited_usage,
             'published' => $published
         );
-        
+            
         //Push to "data"
         array_push($image_arr['images'], $image_item);
     }

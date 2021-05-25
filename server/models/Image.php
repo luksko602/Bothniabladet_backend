@@ -1,11 +1,15 @@
 <?php
 
+//author: Lukas Skog Andersen
+//A data access object of a image in the database.
+
 class Image{
-    //DB stuff
+
+    //DB connection and table
     private $conn;
     private $table = 'image';
 
-       //Post Properties
+       //Image Properties
        public $ID_image;
        public $imageURL;
        public $resolution;
@@ -24,7 +28,7 @@ class Image{
            $this->conn = $db;
        }
 
-    //Get images
+    //Get all images fromt the database
     public function read(){
 
         //Create query   
@@ -36,13 +40,14 @@ class Image{
         //Execute statement
         $stmt->execute();
 
+        //Return result
         return $stmt;
         }
 
-    //Get single image
+    //Gets a singel image by its ID
     public function read_single(){
+        
         //Create query
-         
         $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera, limited_usage, published FROM '.
         $this->table .' WHERE ID_image = ?';
       
@@ -55,9 +60,10 @@ class Image{
         //Execute statement
         $stmt->execute();
 
+        //Handle result
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //Set properties
+        //Set properties in this object
         $this->ID_image = $row['ID_image'];
         $this->imageURL = $row['imageURL'];
         $this->resolution = $row['resolution'];
@@ -71,9 +77,11 @@ class Image{
         $this->limited_usage =$row['limited_usage'];
         $this->published = $row['published'];
 
+        //Return resukt
         return $stmt; 
     }
-    //Create image
+
+    //Creates an image in the database
     public function create(){
         //Create query
         $query = 'INSERT INTO ' . $this->table . '
@@ -129,12 +137,15 @@ class Image{
         }
     }
 
-        //Search for images
+
+        //Function which search for images with an array of keywords (or single word).
        public function filter($keys){
-        //Create query   
+        //Makes sure there are keywords to search with
         if(empty($keys)){
             die();
         }
+        
+        //Prepares query with a double join to retrieves images with specific keywords in it.
         $query = 'SELECT ID_image, imageURL, resolution, file_size, file_type, GPS_coordinates, photographer, location, date, camera, limited_usage, published FROM '. $this->table .
         ' AS i
         INNER JOIN keyword_has_image AS khi  ON khi.Image_ID_image = i.ID_image
@@ -142,6 +153,8 @@ class Image{
         WHERE k.keyword = "'. $keys['0'].'"';
 
         $keys_size = count($keys);
+        //If there are more than one keywords to search for, this SQL statement is
+        //added to the query.
         if ($keys_size > 1){
             for($x = 1; $x <= $keys_size-1; $x++){
                      $query = $query . ' OR k.keyword = "' . $keys[$x].'"';
@@ -153,17 +166,17 @@ class Image{
 
         //Execute statement
         $stmt->execute();
-        return $stmt;
 
+        //Return result
+        return $stmt;
         }
 
-
-
+        //Function to delete an image in the database based on its ID
         public function delete(){
+            //Delete all keyword connections related to this picture
             if($this->deleteKeywords()){
-
             
-            //Prepare statement
+            //Prepare statement to delete image
             $query = 'DELETE FROM '.$this->table.' WHERE ID_image = :id';
             $stmt = $this->conn->prepare($query);
 
@@ -187,6 +200,7 @@ class Image{
             }
         }
 
+        //Deletes all keyword-connections related to this picture object.
         public function deleteKeywords(){
             //Prepare statement
             $query = 'DELETE FROM keyword_has_image WHERE Image_ID_image = :id';
@@ -206,8 +220,9 @@ class Image{
             }
         }
 
-
+        //Updates properties of the image.
         public function update(){
+        //Prepare query
         $query = 'UPDATE '.$this->table.' SET 
             resolution= :resolution,
             file_size= :file_size,
@@ -220,7 +235,6 @@ class Image{
             limited_usage= :limited_usage,
             published= :published 
             WHERE (ID_image = :ID_image)';
-
 
         //Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -259,7 +273,5 @@ class Image{
         printf("Error: %s.\n", $stmt->error);
         return false;
         }
-        }
-        
-        
+        }       
 }

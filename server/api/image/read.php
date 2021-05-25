@@ -1,10 +1,17 @@
 <?php
-//Header
+
+//author: Lukas Skog Andersen
+//A api to read all images from the database
+
+//Headers
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
 include_once '../../config/Database.php';
 require_once '../../models/Image.php';
+
+//The local url for this project. Would be replaced in production.
+const localURL = 'http://localhost/bothniabladet/Bothniabladet_backend/server/images';
 
 //Instantiate DB & connect
 $database = new Database();
@@ -24,12 +31,13 @@ if($num > 0){
     $image_arr = array();
     $image_arr['images'] = array ();
 
+    //Add pictures to the array
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         if ($limited_usage == 0 OR $published == 0) { continue;};
         $image_item = array(
             'ID_image' => $ID_image,
-            'imageURL' => 'http://localhost/bothniabladet/Bothniabladet_backend/server/images'.$imageURL,
+            'imageURL' => localURL.$imageURL,
             'resolution' => $resolution,
             'file_size' => $file_size,
             'file_type' => $file_type,
@@ -47,7 +55,7 @@ if($num > 0){
         array_push($image_arr['images'], $image_item);
     }
     
-    //Turn to JSON & output
+    //Echos image array as json
     echo json_encode($image_arr);
 }else{
     //No images

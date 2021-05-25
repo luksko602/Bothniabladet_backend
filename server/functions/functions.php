@@ -1,4 +1,6 @@
 <?php
+//author: Lukas Skog Andersen
+//Function to create a random string with $n characters.
 function randomString($n)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -9,3 +11,4 @@ function randomString($n)
     }
     return $str;
 }
+

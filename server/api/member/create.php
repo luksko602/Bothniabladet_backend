@@ -1,10 +1,13 @@
 <?php
-//Header
+
+//author: Lukas Skog Andersen
+//A api to create a member in the database
+
+//Headers. Allowed methods POST
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: multipart/form-data');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
-
 
 include_once '../../config/Database.php';
 include_once '../../models/Member.php';
@@ -28,7 +31,7 @@ $member->email = $_POST['email'];
 $member->discount_amount = $_POST['discount_amount'];
 $member->member_type = $_POST['member_type'];
 
-//Create the post
+//Creates the post and member in the database
 if($member->create()){
     echo json_encode(
         array('message' => 'Post Created')

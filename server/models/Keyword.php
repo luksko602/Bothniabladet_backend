@@ -1,11 +1,14 @@
 <?php
 
+//author: Lukas Skog Andersen
+//A data access object of a keyword in the database.
+
 class Keyword{
-    //DB stuff
+    //DB connection and current table.
     private $conn;
     private $table = 'keyword';
 
-       //Post Properties
+       //keyword properties
        public $ID_keyword;
        public $keyword;
 
@@ -14,7 +17,7 @@ class Keyword{
            $this->conn = $db;
        }
 
-    //Get keywords
+    //Return all keywords in the database.
     public function read(){
 
         //Create query   
@@ -26,16 +29,17 @@ class Keyword{
         //Execute statement
         $stmt->execute();
 
+        //Return result
         return $stmt;
         }
 
-        //Create keyword
+        //Creates a new keyword in the database.
         public function create(){
             //Create query
             $query = "INSERT INTO ".$this->table."(".$this->table.") SELECT '".$this->keyword."' 
             WHERE NOT EXISTS (SELECT * FROM ". $this->table ." WHERE ".$this->table."='".$this->keyword."')";
     
-        //Prepare statement
+            //Prepare statement
             $stmt = $this->conn->prepare($query);
     
             //Clean data
@@ -43,6 +47,7 @@ class Keyword{
       
             //Execute query
             if($stmt->execute()){
+                //Returns true if succeeded
                 return true;
             }else{
             //Print error if somethings wrong
@@ -51,10 +56,12 @@ class Keyword{
             }
         }
 
-        //Create a connection between an image and a keyword
+        //Creates a connection between an image and a keyword.
         public function image_connect($ID_image){
+            //Calls a function to check if the keyword is in the database.
             if(!$this->keyword_exists($this->keyword)){
                 if($this->create()){
+                    //If not, it creates it.
                     echo json_encode(
                         array('message' => 'Keyword '.$this->keyword.' Created')
                     );
@@ -64,7 +71,8 @@ class Keyword{
                     );
                 }
             }
-        //Create query
+
+        //Create query for inserting connection.
             $query = 'INSERT INTO keyword_has_image (Key_word_ID_key_word, Image_ID_image) 
             VALUES ((SELECT ID_keyword from keyword WHERE keyword="'.$this->keyword.'"), '.$ID_image.')';
         
@@ -85,7 +93,7 @@ class Keyword{
         }
     }
     
-
+    //Function which checks whether a keywords exists in the database or not.
     public function keyword_exists($key){
         //Create query   
         $query = 'SELECT keyword FROM ' . $this->table.' WHERE keyword = "' .$key.'"';
@@ -99,22 +107,29 @@ class Keyword{
             $num = $stmt->rowCount();
             //Check if any posts
             if($num > 0){
+                //If the keywords exists -> return true
                 return true;
             }else{
+                //If the keywords does not exists -> return false
                 return false;
             }
         }catch(Exception $e){
+            //If any troubles -> return false
             return false;
         }
     }
+
+    //Retrieves all keywords from a specific image by its ID
     public function read_by_id_image($ID_image){
+        //Creates a query with a join on keyword.
         $query = 'SELECT keyword FROM keyword_has_image as khi 
         JOIN keyword as k ON khi.Key_word_ID_key_word = k.ID_keyword 
         WHERE khi.Image_ID_image = :id';
 
-         //Prepare statement
-         $stmt = $this->conn->prepare($query);
+        //Prepare statement
+        $stmt = $this->conn->prepare($query);
 
+        //Clean and bind data
         $ID_image = htmlspecialchars(strip_tags($ID_image));
         $stmt->bindValue(':id', $ID_image);
 

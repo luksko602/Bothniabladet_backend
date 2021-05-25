@@ -38,7 +38,7 @@ CREATE TABLE `image` (
   `limited_usage` int NOT NULL DEFAULT '-1',
   `published` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID_image`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `image` (
 
 LOCK TABLES `image` WRITE;
 /*!40000 ALTER TABLE `image` DISABLE KEYS */;
-INSERT INTO `image` VALUES (97,'/BivFCvZ1/DSCN0042.jpg','300/1x300/1',156695,'image/jpeg','N;43/1;27/1;520380000/10000000;E;11/1;52/1;53322/1000','Lukas ','Spanien','2008-10-22 17:00:07','NIKON COOLPIX P6000',-1,1),(98,'/qn4sbBst/DSCN0040.jpg','300/1x300/1',152893,'image/jpeg','N;43/1;27/1;576419999/10000000;E;11/1;52/1;448019999/10000000','Linus','Spanien','2008-10-22 16:55:37','NIKON COOLPIX P6000',-1,0),(100,'/sQz7gGmG/DSCN0029.jpg','300/1x300/1',150085,'image/jpeg','N;43/1;28/1;567599999/100000000;E;11/1;52/1;486179999/10000000','Christoffer','Spanien','2008-10-22 16:46:53','NIKON COOLPIX P6000',-1,1),(102,'/j7tADcfD/DSCN0025.jpg','300/1x300/1',150301,'image/jpeg','N;43/1;28/1;611400000/100000000;E;11/1;52/1;538859999/10000000','Lukas','Spanien','2008-10-22 16:43:21','NIKON COOLPIX P6000',-1,1),(103,'/CRjlWSn9/DSCN0025.jpg','300/1x300/1',150301,'image/jpeg','N;43/1;28/1;611400000/100000000;E;11/1;52/1;538859999/10000000','Albin','Spanien','2008-10-22 16:43:21','NIKON COOLPIX P6000',-1,1),(104,'/fWlS4h9O/DSCN0021.jpg','300/1x300/1',157382,'image/jpeg','N;43/1;28/1;149399999/100000000;E;11/1;53/1;433799999/100000000','Linus','Spanien','2008-10-22 16:38:20','NIKON COOLPIX P6000',-1,1),(105,'/YCsryqor/DSCN0012.jpg','300/1x300/1',159137,'image/jpeg','N;43/1;28/1;176399999/100000000;E;11/1;53/1;742199999/100000000','Simon','Spanien','2008-10-22 16:29:49','NIKON COOLPIX P6000',-1,1),(106,'/3XvMOlWG/DSCN0010.jpg','300/1x300/1',161713,'image/jpeg','N;43/1;28/1;281400000/100000000;E;11/1;53/1;645599999/100000000','Simon','Spanien','2008-10-22 16:28:39','NIKON COOLPIX P6000',-1,1),(127,'/9Ump1pZw/miguel-ibanez-cO7zI0lqzqI-unsplash.jpg','',2802263,'image/jpeg','','Simon','Frankrike','2021-05-21 11:03:04','',-1,1),(128,'/B8xqY9jV/mohammad-alizade-62t_kKa2YlA-unsplash.jpg','',2563811,'image/jpeg','','Simon','Sundsvall','2021-05-21 11:04:13','',4,1),(129,'/yHlvDsa2/james-wheeler-ZOA-cqKuJAA-unsplash.jpg','',787775,'image/jpeg','','Lukas','USA','2021-05-21 11:05:46','',-1,1),(130,'/olK0zkcK/matthew-smith-rFBA42UFpLs-unsplash.jpg','',3129157,'image/jpeg','','Lukas','USA','2021-05-21 11:08:13','',-1,1),(144,'/HEX5wNSS/patrick-szylar-45bM3XGqnDE-unsplash.jpg','',2009364,'image/jpeg','','Lukas','USA','2021-05-21 11:31:02','',-1,1),(145,'/yM8duG7K/kevin-wolf-3AbwSH1y9dc-unsplash.jpg','',2334786,'image/jpeg','','Christoffer','Göteborg','2021-05-21 11:32:47','',-1,1);
+INSERT INTO `image` VALUES (100,'/sQz7gGmG/DSCN0029.jpg','300/1x300/1',150085,'image/jpeg','N;43/1;28/1;567599999/100000000;E;11/1;52/1;486179999/10000000','Christoffer','Spanien','2008-10-22 16:46:53','NIKON COOLPIX P6000',-1,0),(103,'/CRjlWSn9/DSCN0025.jpg','300/1x300/1',150301,'image/jpeg','N;43/1;28/1;611400000/100000000;E;11/1;52/1;538859999/10000000','Albin','Spanien','2008-10-22 16:43:21','NIKON COOLPIX P6000',-1,0),(104,'/fWlS4h9O/DSCN0021.jpg','300/1x300/1',157382,'image/jpeg','N;43/1;28/1;149399999/100000000;E;11/1;53/1;433799999/100000000','Linus','Spanien','2008-10-22 16:38:20','NIKON COOLPIX P6000',-1,1),(127,'/9Ump1pZw/miguel-ibanez-cO7zI0lqzqI-unsplash.jpg','',2802263,'image/jpeg','','Simon','Frankrike','2021-05-21 11:03:04','',-1,0),(128,'/B8xqY9jV/mohammad-alizade-62t_kKa2YlA-unsplash.jpg','',2563811,'image/jpeg','','Simon','Sundsvall','2021-05-21 11:04:13','',4,0),(129,'/yHlvDsa2/james-wheeler-ZOA-cqKuJAA-unsplash.jpg','',787775,'image/jpeg','','Lukas','USA','2021-05-21 11:05:46','Samsung S20',-1,0),(130,'/olK0zkcK/matthew-smith-rFBA42UFpLs-unsplash.jpg','',3129157,'image/jpeg','','Lukas','USA','2021-05-21 11:08:13','',-1,1),(144,'/HEX5wNSS/patrick-szylar-45bM3XGqnDE-unsplash.jpg','',2009364,'image/jpeg','','Lukas','USA','2021-05-21 11:31:02','',-1,1),(145,'/yM8duG7K/kevin-wolf-3AbwSH1y9dc-unsplash.jpg','',2334786,'image/jpeg','','Christoffer','Göteborg','2021-05-21 11:32:47','',-1,1),(147,'/LGuixByE/DSCN0027.jpg','300/1x300/1',157723,'image/jpeg','N;43/1;28/1;639000000/100000000;E;11/1;52/1;534540000/10000000','Lukas','Spanien','2008-10-22 16:44:01','NIKON COOLPIX P6000',5,1),(148,'/PQqeH3vj/DSCN0025.jpg','300/1x300/1',150301,'image/jpeg','N;43/1;28/1;611400000/100000000;E;11/1;52/1;538859999/10000000','Albin','Spanien','2008-10-22 16:43:21','NIKON COOLPIX P6000',-1,1),(149,'/qVMtRxpk/holly-mandarich-UVyOfX3v0Ls-unsplash.jpg','',4616903,'image/jpeg','','Simon','USA','2021-05-25 09:57:28','',-1,1);
 /*!40000 ALTER TABLE `image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +118,7 @@ CREATE TABLE `keyword` (
   `ID_keyword` int NOT NULL AUTO_INCREMENT,
   `keyword` varchar(100) NOT NULL,
   PRIMARY KEY (`ID_keyword`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +127,7 @@ CREATE TABLE `keyword` (
 
 LOCK TABLES `keyword` WRITE;
 /*!40000 ALTER TABLE `keyword` DISABLE KEYS */;
-INSERT INTO `keyword` VALUES (1,'Prinsessan'),(27,'simon'),(33,'golv'),(34,'tavla'),(35,'kyrka'),(36,'spanien'),(37,'träd'),(38,'lukas'),(39,'linus'),(40,'christoffer'),(41,'albin'),(42,'torg'),(43,'gata'),(44,'vägg'),(45,'människa'),(46,'frankrike'),(47,'äng'),(48,'natur'),(49,'sundsvall'),(50,'usa'),(51,'sjö'),(52,'göteborg'),(53,'cykel');
+INSERT INTO `keyword` VALUES (1,'Prinsessan'),(27,'simon'),(33,'golv'),(34,'tavla'),(35,'kyrka'),(36,'spanien'),(37,'träd'),(38,'lukas'),(39,'linus'),(40,'christoffer'),(41,'albin'),(42,'torg'),(43,'gata'),(44,'vägg'),(45,'människa'),(46,'frankrike'),(47,'äng'),(48,'natur'),(49,'sundsvall'),(50,'usa'),(51,'sjö'),(52,'göteborg'),(53,'cykel'),(54,'blomma'),(55,'vandring');
 /*!40000 ALTER TABLE `keyword` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +147,7 @@ CREATE TABLE `keyword_has_image` (
   KEY `fk_Key_word_has_Image_Key_word1_idx` (`Key_word_ID_key_word`),
   CONSTRAINT `fk_Key_word_has_Image_Image1` FOREIGN KEY (`Image_ID_image`) REFERENCES `image` (`ID_image`),
   CONSTRAINT `fk_Key_word_has_Image_Key_word1` FOREIGN KEY (`Key_word_ID_key_word`) REFERENCES `keyword` (`ID_keyword`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +156,7 @@ CREATE TABLE `keyword_has_image` (
 
 LOCK TABLES `keyword_has_image` WRITE;
 /*!40000 ALTER TABLE `keyword_has_image` DISABLE KEYS */;
-INSERT INTO `keyword_has_image` VALUES (48,36,98),(50,36,100),(53,36,102),(54,36,103),(55,36,104),(56,37,104),(57,36,105),(58,37,105),(59,36,106),(61,39,98),(63,40,100),(65,38,102),(71,42,98),(76,38,97),(79,41,103),(80,39,104),(81,27,105),(82,27,106),(83,36,97),(84,35,97),(85,27,127),(86,46,127),(87,47,127),(88,48,127),(89,27,128),(90,49,128),(91,38,129),(92,50,129),(93,38,130),(94,50,130),(95,38,144),(96,50,144),(97,51,144),(98,40,145),(99,52,145),(100,53,145);
+INSERT INTO `keyword_has_image` VALUES (50,36,100),(54,36,103),(55,36,104),(56,37,104),(63,40,100),(79,41,103),(80,39,104),(85,27,127),(86,46,127),(87,47,127),(88,48,127),(89,27,128),(90,49,128),(91,38,129),(92,50,129),(93,38,130),(94,50,130),(95,38,144),(96,50,144),(97,51,144),(98,40,145),(99,52,145),(100,53,145),(101,48,130),(102,48,129),(103,48,144),(104,51,129),(105,54,127),(106,35,147),(107,36,147),(108,38,147),(109,27,149),(110,50,149),(111,55,149),(112,41,148),(113,36,148),(114,43,148);
 /*!40000 ALTER TABLE `keyword_has_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,7 +180,7 @@ CREATE TABLE `member` (
   `discount_amount` int DEFAULT '0',
   `member_type` enum('m','c') NOT NULL,
   PRIMARY KEY (`ID_member`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +189,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'lukas123','Lukas','Skog','Linkoping','58233','Gullbergsgatan 10','0712312311','lukas@hotmail.com',40,'m'),(2,'simon123','Simon','Nilsson','Skellefteå','12312','Gladagatan 2','0743534543','simon@hotmail.com',0,'c'),(3,'christoffer123','Lindberg','Anka','Göteborg','42325','Argagatan 5','0723442354','christoffer@hotmail.com',0,'m'),(4,'linus123','Linus','Marjavaara Lindahl','Skellefteå','23464','Vigatan 2','0777732423','Linus@hotmail.com',0,'c'),(5,'albin123','Albin','Dahlgren','Linkoping','34535','Ombergsgatan 27','0456464543','albin@hotmail.com',0,'c'),(6,'hej','Daniel','Daggmask','Skellefteå','43534','Borsallé 75','0567456346','daniel.daggmask@hotmail.com',0,'c'),(7,'hej','Elsa','Ekorre','Göteborg','23411','Drottninggatan 23','0523423422','elsa.ekorre@hotmail.com',8,'c'),(8,'hej','Fiona','Fisk','Göteborg','42132','Storgatan 45','0564523433','fiona.fisk@hotmail.com',7,'c'),(9,'hej','Gustav','Groda','Linkoping','31232','Gatan 5','0723423423','gustav.groda@hotmail.com',30,'c'),(10,'hej','Hanna’','Haj','Göteborg','23141','Köpingsgränd 52','013-23123','hanna.haj@hotmail.com',5,'c'),(11,'hej','Ingrid','Igelkott','Göteborg','15135','Fulgatan 1','0724235512','ingrid.igelkott@hotmail.com',10,'c'),(12,'hej','Carl','Gustaf','staden','12341','Finagatan 3','013-512321','carl_cool_gustaf@yahoo.com',0,'c'),(17,'david123','David','Davidsson','staden','11111','gatan 2','010-111111','david@hotmail.com',0,'c'),(18,'luke123','Luke','A','asd','dasd','afsa','9123','luke@hotmail.com',0,'c'),(19,'luke123','luke','a','asd','asdf','adf','123','luke@hotmail.com',0,'c'),(20,'test','test','test','test','test','test','test','test@test.se',0,'c');
+INSERT INTO `member` VALUES (1,'lukas123','Lukas','Skog','Linkoping','58233','Gullbergsgatan 10','0712312311','lukas@hotmail.com',40,'m'),(2,'simon123','Simon','Nilsson','Skellefteå','12312','Gladagatan 2','0743534543','simon@hotmail.com',0,'c'),(3,'christoffer123','Lindberg','Anka','Göteborg','42325','Argagatan 5','0723442354','christoffer@hotmail.com',0,'m'),(4,'linus123','Linus','Marjavaara Lindahl','Skellefteå','23464','Vigatan 2','0777732423','Linus@hotmail.com',0,'c'),(5,'albin123','Albin','Dahlgren','Linkoping','34535','Ombergsgatan 27','0456464543','albin@hotmail.com',0,'c'),(6,'hej','Daniel','Daggmask','Skellefteå','43534','Borsallé 75','0567456346','daniel.daggmask@hotmail.com',0,'c'),(7,'hej','Elsa','Ekorre','Göteborg','23411','Drottninggatan 23','0523423422','elsa.ekorre@hotmail.com',8,'c'),(8,'hej','Fiona','Fisk','Göteborg','42132','Storgatan 45','0564523433','fiona.fisk@hotmail.com',7,'c'),(9,'hej','Gustav','Groda','Linkoping','31232','Gatan 5','0723423423','gustav.groda@hotmail.com',30,'c'),(10,'hej','Hanna’','Haj','Göteborg','23141','Köpingsgränd 52','013-23123','hanna.haj@hotmail.com',5,'c'),(11,'hej','Ingrid','Igelkott','Göteborg','15135','Fulgatan 1','0724235512','ingrid.igelkott@hotmail.com',10,'c'),(12,'hej','Carl','Gustaf','staden','12341','Finagatan 3','013-512321','carl_cool_gustaf@yahoo.com',0,'c'),(17,'david123','David','Davidsson','staden','11111','gatan 2','010-111111','david@hotmail.com',0,'c'),(18,'luke123','Luke','A','asd','dasd','afsa','9123','luke@hotmail.com',0,'c'),(19,'luke123','luke','a','asd','asdf','adf','123','luke@hotmail.com',0,'c'),(20,'test','test','test','test','test','test','test','test@test.se',0,'c'),(21,'lukas','Lukas','Skog','Linköping','58246','gatan 20','013- 123123','lukas_skog@hotmail.com',0,'c');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -202,4 +202,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-21 11:35:37
+-- Dump completed on 2021-05-25  9:59:05
